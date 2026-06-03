@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Ensures characters load correctly -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajan Sahgal | Expert Graphic Designer</title>
+    
+    <!-- PREMIUM TYPOGRAPHY -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FONT AWESOME (For Professional Icons - Fixes the symbol issue) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ----- THEME VARIABLES (LIGHT & DARK) ----- */
+        :root {
+            --bg-pure: #ffffff;
+            --bg-light: #f8f9fa;
+            --text-dark: #0f172a;
+            --text-light: #64748b;
+            --accent: #FACC15; 
+            --border-color: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-pure: #0f172a;
+            --bg-light: #1e293b;
+            --text-dark: #f8fafc;
+            --text-light: #94a3b8;
+            --accent: #FACC15;
+            --border-color: #334155;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-pure);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        h1, h2, h3, h4, h5, .logo, .price { font-family: var(--font-heading); color: var(--text-dark); transition: color 0.4s ease;}
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+
+        /* ----- NAVIGATION ----- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 5%; background: var(--nav-bg);
+            backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.4s ease;
+        }
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+        .nav-links a { color: var(--text-dark); text-decoration: none; font-weight: 500; position: relative; transition: 0.3s ease; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover::after { width: 100%; }
+
+        #theme-toggle {
+            background: transparent; border: 2px solid var(--border-color);
+            color: var(--text-dark); font-size: 1.2rem; cursor: pointer;
+            padding: 0.5rem; border-radius: 50%; width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center; transition: 0.3s ease;
+        }
+        #theme-toggle:hover { border-color: var(--accent); background: var(--bg-light); }
+
+        /* ----- BUTTONS ----- */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--accent); color: #0f172a;
+            font-family: var(--font-heading); padding: 1rem 2.2rem;
+            font-size: 1.05rem; font-weight: 700; text-decoration: none;
+            border-radius: 8px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--accent); cursor: pointer;
+        }
+        .btn:hover {
+            background: var(--text-dark); color: var(--bg-pure);
+            border-color: var(--text-dark); transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(250, 204, 21, 0.2);
+        }
+        .btn-outline { background: transparent; border: 2px solid var(--border-color); color: var(--text-dark); }
+        .btn-outline:hover { border-color: var(--text-dark); background: var(--text-dark); color: var(--bg-pure); }
+
+        /* ----- SCROLL REVEAL ANIMATIONS ----- */
+        .reveal { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+        .hero-fade-in { animation: heroFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0; transform: translateY(40px); }
+        @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+        /* ----- SHARED SECTIONS ----- */
+        .section-title { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 3rem; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: 6px; width: 40%; height: 6px; background-color: var(--accent); border-radius: 4px; transition: width 0.4s ease; }
+        section:hover .section-title::after { width: 100%; }
+        section { padding: 7rem 0; }
+
+        /* ----- HERO ----- */
+        .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center; min-height: 85vh; }
+        .hero-content h1 { font-size: 4.2rem; line-height: 1.1; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 1.5rem; }
+        .hero-content h1 span { position: relative; z-index: 1; }
+        .hero-content h1 span::before { content: ''; position: absolute; bottom: 8px; left: 0; width: 100%; height: 30%; background: var(--accent); z-index: -1; transform: rotate(-2deg); }
+        .hero-content p { font-size: 1.15rem; color: var(--text-light); margin-bottom: 2.5rem; }
+        
+        .hero-img-container {
+            position: relative; height: 500px; border-radius: 20px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--border-color) 100%); 
+            border: 1px solid var(--border-color); transition: transform 0.5s ease, box-shadow 0.5s ease; overflow: hidden;
+        }
+        .hero-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-img-container:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        
+        .hero-badge {
+            position: absolute; bottom: -10px; left: -10px; background: var(--accent);
+            color: #0f172a; padding: 1rem 2rem; border-radius: 12px; font-family: var(--font-heading);
+            font-weight: 700; font-size: 1.2rem; box-shadow: 0 10px 20px rgba(250, 204, 21, 0.3);
+            animation: float 3s ease-in-out infinite; z-index: 10; border: 2px solid var(--text-dark);
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+
+        /* ----- ABOUT ----- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .about-text p { margin-bottom: 1.5rem; color: var(--text-light); }
+        .skills-container { background: var(--bg-light); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-color); transition: all 0.3s ease; }
+        .skills-container:hover { background: var(--bg-pure); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: var(--accent); }
+        .skills-list { list-style: none; margin-bottom: 2rem; }
+        .skills-list li { margin-bottom: 0.8rem; font-weight: 500; display: flex; align-items: center; }
+        .skills-list li i { color: var(--accent); font-size: 1.2rem; margin-right: 12px; } /* Icon Style */
+
+        /* ----- PROJECTS ----- */
+        .project-card { background: var(--bg-pure); border: 1px solid var(--border-color); border-radius: 16px; margin-bottom: 3rem; display: grid; grid-template-columns: 1.2fr 1fr; overflow: hidden; transition: all 0.4s ease; }
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--accent); }
+        
+        .project-img-wrapper { overflow: hidden; position: relative; min-height: 350px; cursor: pointer; background: var(--bg-light); }
+        .project-img-wrapper img { width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0; transition: transform 0.6s ease; }
+        .project-card:hover .project-img-wrapper img { transform: scale(1.08) rotate(1deg); }
+        
+        .preview-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s ease; color: white; font-weight: bold; font-family: var(--font-heading); font-size: 1.2rem; }
+        .project-img-wrapper:hover .preview-overlay { opacity: 1; }
+
+        .project-info { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+        .project-info h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .project-info p { margin-bottom: 1rem; color: var(--text-light); }
+        .tags-wrap { display: flex; gap: 10px; margin-top: 1.5rem; }
+        .tag { background: var(--bg-light); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
+        .project-card:hover .tag { background: var(--text-dark); color: var(--bg-pure); }
+
+        /* ----- FULLSCREEN IMAGE MODAL ----- */
+        #imageModal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        #imageModal.show { display: flex; opacity: 1; }
+        .modal-content { max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 30px rgba(250, 204, 21, 0.3); transform: scale(0.9); transition: transform 0.3s ease; }
+        #imageModal.show .modal-content { transform: scale(1); }
+        .close-modal { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 10000; }
+        .close-modal:hover { color: var(--accent); }
+
+        /* ----- PRICING ----- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+        .price-card { background: var(--bg-pure); padding: 3rem 2rem; border-radius: 16px; border: 1px solid var(--border-color); transition: all 0.4s ease; position: relative; }
+        .price-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .price-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .price-card h3 i { margin-right: 8px; color: var(--text-dark); }
+        .price-card .desc { color: var(--text-light); margin-bottom: 2rem; font-size: 0.95rem; min-height: 45px;}
+        .price-card .price { font-size: 3rem; font-weight: 900; margin-bottom: 1.5rem; }
+        .price-card ul { list-style: none; margin-bottom: 2.5rem; }
+        .price-card ul li { margin-bottom: 1rem; color: var(--text-light); border-bottom: 1px solid var(--bg-light); padding-bottom: 0.8rem; display: flex; }
+        .price-card ul li i { color: var(--accent); margin-right: 10px; margin-top: 5px; font-size: 0.9rem;}
+        
+        .price-card.popular { background: #0f172a; color: #ffffff; transform: scale(1.05); border: none; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); }
+        .price-card.popular:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 20px 40px rgba(250, 204, 21, 0.3); }
+        .price-card.popular h3, .price-card.popular .price { color: #ffffff; }
+        .price-card.popular h3 i { color: var(--accent); }
+        .price-card.popular .desc, .price-card.popular ul li { color: #94a3b8; border-color: #334155; }
+        
+        .popular-badge { position: absolute; top: -15px; right: 20px; background: var(--accent); color: #0f172a; padding: 6px 18px; font-size: 0.85rem; font-weight: 700; border-radius: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(250, 204, 21, 0); } 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); } }
+
+        /* ----- CONTACT & WORKFLOW ----- */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-form { background: var(--bg-pure); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 1.2rem; margin-bottom: 1.2rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-light); color: var(--text-dark); font-family: var(--font-body); font-size: 1rem; transition: 0.3s ease; }
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { outline: none; border-color: var(--accent); background: var(--bg-pure); box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.15); }
+        .workflow-box { background: var(--bg-light); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border-color); margin-top: 2rem; }
+
+        /* ----- FOOTER ----- */
+        footer { background: #0f172a; color: #ffffff; padding: 5rem 5% 2rem; text-align: center; }
+        footer h2 { font-size: 2.5rem; color: #ffffff; margin-bottom: 0.5rem; }
+        .footer-links { margin: 2.5rem 0; }
+        .footer-links a { color: #94a3b8; margin: 0 1.5rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--accent); }
+
+        /* ========================================================
+           NEW: CHECKOUT / REDIRECT PAGE STYLING
+           ======================================================== */
+        #checkout-page {
+            display: none; /* Hidden by default */
+            padding: 5rem 5%;
+            min-height: 90vh;
+            background: var(--bg-light);
+        }
+        .checkout-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-pure);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+        }
+        .checkout-header { text-align: center; margin-bottom: 2rem; }
+        .checkout-header i { font-size: 3rem; color: var(--accent); margin-bottom: 1rem; }
+        .checkout-header h2 { font-size: 2.2rem; }
+        
+        .selected-pkg-box {
+            background: var(--bg-light);
+            border: 1px dashed var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .selected-pkg-box p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;}
+        
+        /* Auto-filled Readonly inputs style */
+        .readonly-input {
+            background-color: transparent !important;
+            border: none !important;
+            font-size: 1.5rem !important;
+            font-weight: 900 !important;
+            color: var(--accent) !important;
+            text-align: center;
+            padding: 0 !important;
+            margin-bottom: 0.5rem !important;
+            box-shadow: none !important;
+            font-family: var(--font-heading) !important;
+        }
+
+        @media(max-width: 900px) {
+            .hero, .about-grid, .project-card, .pricing-grid, .contact-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 3rem; } .nav-links { display: none; }
+            .price-card.popular { transform: scale(1); } .price-card.popular:hover { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav>
+        <div class="logo">RAJAN<span>SAHGAL</span></div>
+        <div class="nav-links">
+            <a href="#hero" onclick="showPortfolio()">Home</a>
+            <a href="#projects" onclick="showPortfolio()">Work</a>
+            <a href="#about" onclick="showPortfolio()">About Me</a>
+            <a href="#contact" onclick="showPortfolio()">Contact</a>
+            
+            <!-- Dark Mode Toggle Button (FontAwesome Icon) -->
+            <button id="theme-toggle" title="Toggle Dark Mode"><i class="fa-solid fa-moon"></i></button>
+            
+            <a href="#contact" class="btn" style="padding: 0.6rem 1.5rem;" onclick="showPortfolio()">Hire Me</a>
+        </div>
+    </nav>
+
+    <!-- MAIN PORTFOLIO WRAPPER -->
+    <div id="main-portfolio">
+        <div class="container">
+            <!-- HERO SECTION -->
+            <section class="hero" id="hero">
+                <div class="hero-content hero-fade-in">
+                    <h1>Turning Viewers into <span>High-Converting</span> Thumbnails & Covers.</h1>
+                    <p>Main pichle 5 saalon se YouTubers aur Instagrammers ke liye aisi eye-catching designs bana raha hoon, jo unki video ka Click-Through Rate (CTR) aur engagement badhate hain.</p>
+                    <a href="#contact" class="btn">Let's Work Together <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="hero-img-container hero-fade-in" style="animation-delay: 0.2s;">
+                    <!-- Sample Hero Image - Replace with yours -->
+                    <img src="https://i.ibb.co/tfvkGGt/Picsart-26-06-04-01-05-47-377.png" alt="Rajan Sahgal - Graphic Designer">
+                    <div class="hero-badge"><i class="fa-solid fa-star"></i> 5+ Years Exp.</div>
+                </div>
+            </section>
+
+            <!-- ABOUT ME -->
+            <section id="about">
+                <h2 class="section-title reveal">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-text reveal delay-1">
+                        <p><strong>Design mere liye sirf ek kaam nahi, balki ek visual story batane ka tareeka hai.</strong> Pichle 5 saalon mein, maine kai top YouTubers aur Instagram Creators ke sath closely kaam kiya hai.</p>
+                        <p>Mera main focus hamesha ek cheez par hota hai: <strong>"Scroll-Stopping Designs."</strong> Chahe YouTube ka thumbnail ho ya Instagram Reel ka cover, mujhe pata hai ki colors, typography, aur facial expressions ka sahi use karke audience ki attention kaise grab karni hai.</p>
+                        <p>Agar aap apne channel ya page ki growth aur views badhana chahte hain, toh main aapki visual branding ko next level par le jaa sakta hoon.</p>
+                    </div>
+                    <div class="skills-container reveal delay-2">
+                        <h4 style="margin-bottom: 1rem; font-size: 1.3rem;"><i class="fa-solid fa-screwdriver-wrench" style="color:var(--accent);"></i> Software Arsenal</h4>
+                        <ul class="skills-list">
+                            <li><i class="fa-solid fa-check"></i> Adobe Photoshop</li>
+                            <li><i class="fa-solid fa-check"></i> Adobe Illustrator</li>
+                        </ul>
+                        <h4 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.3rem;"><i class="fa-solid fa-bullseye" style="color:var(--accent);"></i> Core Expertise</h4>
+                        <ul class="skills-list">
+                            <li><i class="fa-solid fa-check"></i> YouTube Thumbnail Design (Gaming, Vlogs, Tech, Finance, etc.)</li>
+                            <li><i class="fa-solid fa-check"></i> Instagram Reel Covers & Feed Aesthetics</li>
+                            <li><i class="fa-solid fa-check"></i> Color Psychology & Typography</li>
+                            <li><i class="fa-solid fa-check"></i> CTR (Click-Through Rate) Optimization</li>
+                            <li><i class="fa-solid fa-check"></i> Visual Hierarchy & Layout Design</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURED PROJECTS -->
+            <section id="projects">
+                <h2 class="section-title reveal">Featured Projects</h2>
+                <p style="margin-bottom: 3rem; color: var(--text-light);" class="reveal">Aapke profile ke hisaab se professional designs jo viewers ko click karne par majboor kar dein.</p>
+
+                <!-- Project 1 -->
+                <div class="project-card reveal delay-1">
+                    <div class="project-img-wrapper" onclick="openModal(this)">
+                        <div class="preview-overlay"><i class="fa-solid fa-magnifying-glass"></i> Click to Preview</div>
+                        <img src="https://i.ibb.co/w8FzMMy/Gemini-Generated-Image-70elsg70elsg70el.png="YouTube Thumbnail Strategy">
+                    </div>
+                    <div class="project-info">
+                        <h3>Project 1: YouTube Channel Revamp – The 10x CTR Strategy</h3>
+                        <p><strong>What I Made:</strong> Ek popular YouTube channel ke liye 20+ custom high-retention thumbnails design kiye. Iska main goal click-through rate (CTR) badhana aur channel ko ek consistent, branded look dena tha.</p>
+                        <p><strong>My Role & Process:</strong> Maine bold typography, glowing effects, aur high-contrast color grading ka use kiya taaki videos mobile aur desktop, dono screens par pop out ho kar dikhein.</p>
+                        <div class="tags-wrap">
+                            <span class="tag">Adobe Photoshop</span> <span class="tag">Lightroom</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card reveal delay-2">
+                    <div class="project-img-wrapper" onclick="openModal(this)">
+                        <div class="preview-overlay"><i class="fa-solid fa-magnifying-glass"></i> Click to Preview</div>
+                        <img src="https://i.ibb.co/skTpbdF/Gemini-Generated-Image-25313l25313l2531.png" alt="Viral Reel Covers">
+                    </div>
+                    <div class="project-info">
+                        <h3>Project 2: Viral Instagram Reel Cover Series</h3>
+                        <p><strong>What I Made:</strong> Ek lifestyle aur fitness Instagrammer ke liye Reel covers ka ek poora bundle tayar kiya, jisse unka profile grid ekdum clean aur highly professional dikhne laga.</p>
+                        <p><strong>My Role & Process:</strong> Text placement ko is tarah se design kiya gaya ki woh Instagram ke UI elements (like/comment buttons) ke piche na chhupe. Catchy titles aur perfect image masking ka use kiya.</p>
+                        <div class="tags-wrap">
+                            <span class="tag">Adobe Illustrator</span> <span class="tag">Adobe Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Experience -->
+                <div class="workflow-box reveal delay-3">
+                    <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-briefcase" style="color:var(--accent);"></i> Freelance Graphic Designer (Creators & Influencers)</h3>
+                    <p style="color: var(--accent); font-weight: 700; margin-bottom: 1.5rem;">Experience: 5 Years | Present</p>
+                    <ul style="margin-left: 1.5rem; color: var(--text-light);">
+                        <li style="margin-bottom: 0.8rem;">YouTubers aur Instagrammers ke visual content aur branding ko design karna.</li>
+                        <li style="margin-bottom: 0.8rem;">Client ke video topic aur target audience ko samajh kar uske hisaab se custom thumbnails banana.</li>
+                        <li>Deadlines ke andar high-quality, click-worthy designs deliver karna.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- PRICING SECTION (UPDATED TO REDIRECT/CHECKOUT) -->
+            <section id="pricing">
+                <h2 class="section-title reveal">Investment Packages</h2>
+                <p style="margin-bottom: 3rem; color: var(--text-light);" class="reveal">Quality design ek kharcha nahi, balki aapke channel ki growth ke liye ek investment hai. Choose the package that best fits your content schedule:</p>
+                
+                <div class="pricing-grid">
+                    <!-- Package 1 -->
+                    <div class="price-card reveal delay-1">
+                        <h3><i class="fa-solid fa-medal" style="color: #cd7f32;"></i> The Starter</h3>
+                        <p class="desc">Perfect for creators testing out new design styles or needing occasional designs.</p>
+                        <div class="price">Rs 249</div>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> 1 Custom YouTube Thumbnail OR 2 Instagram Reel Covers</li>
+                            <li><i class="fa-solid fa-check"></i> High-Resolution Export (JPEG/PNG)</li>
+                            <li><i class="fa-solid fa-check"></i> 2 Rounds of Revisions</li>
+                            <li><i class="fa-solid fa-check"></i> Turnaround Time: 24 - 48 Hours</li>
+                        </ul>
+                        <!-- BUTTON CALLS THE CHECKOUT FUNCTION -->
+                        <button onclick="startCheckout('The Starter Package', 'Rs 249')" class="btn btn-outline" style="width: 100%;">Choose Starter</button>
+                    </div>
+
+                    <!-- Package 2 -->
+                    <div class="price-card popular reveal delay-2">
+                        <div class="popular-badge"><i class="fa-solid fa-fire"></i> Most Popular</div>
+                        <h3><i class="fa-solid fa-medal" style="color: #c0c0c0;"></i> The Creator Pro</h3>
+                        <p class="desc">Best for consistent uploaders who want to maintain a professional brand identity.</p>
+                        <div class="price">Rs 499</div>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> 4 Custom YouTube Thumbnails OR 8 Instagram Reel Covers</li>
+                            <li><i class="fa-solid fa-check"></i> High-Resolution Export (JPEG/PNG)</li>
+                            <li><i class="fa-solid fa-check"></i> Color grading and text optimization for CTR</li>
+                            <li><i class="fa-solid fa-check"></i> Unlimited Revisions</li>
+                            <li><i class="fa-solid fa-check"></i> Turnaround Time: 2-3 Days</li>
+                        </ul>
+                        <!-- BUTTON CALLS THE CHECKOUT FUNCTION -->
+                        <button onclick="startCheckout('The Creator Pro', 'Rs 499')" class="btn" style="width: 100%;">Choose Pro</button>
+                    </div>
+
+                    <!-- Package 3 -->
+                    <div class="price-card reveal delay-3">
+                        <h3><i class="fa-solid fa-medal" style="color: #ffd700;"></i> Viral Partnership</h3>
+                        <p class="desc">For serious creators and agencies who want a dedicated design partner.</p>
+                        <div class="price">Rs 999<span style="font-size: 1rem; color: var(--text-light);">/mo</span></div>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Up to 15 YouTube Thumbnails AND/OR Reel Covers per month</li>
+                            <li><i class="fa-solid fa-check"></i> Priority Support & Concept Brainstorming</li>
+                            <li><i class="fa-solid fa-check"></i> Source Files (.PSD / .AI) included</li>
+                            <li><i class="fa-solid fa-check"></i> A/B Testing variations</li>
+                            <li><i class="fa-solid fa-check"></i> Unlimited Revisions</li>
+                            <li><i class="fa-solid fa-check"></i> VIP 12-24 Hour Delivery</li>
+                        </ul>
+                        <!-- BUTTON CALLS THE CHECKOUT FUNCTION -->
+                        <button onclick="startCheckout('Viral Partnership (Monthly)', 'Rs 999/mo')" class="btn btn-outline" style="width: 100%;">Choose VIP</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CONTACT PAGE -->
+            <section id="contact">
+                <h2 class="section-title reveal">Let’s Create Something Viral! <i class="fa-solid fa-rocket"></i></h2>
+                <p style="margin-bottom: 3rem; color: var(--text-light);" class="reveal">Ready to level up your YouTube CTR and Instagram engagement? Let’s connect!</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-form reveal delay-1">
+                        <form action="https://formspree.io/f/mqeokajr" method="POST">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <select name="service_type" required>
+                                <option value="" disabled selected>What kind of design do you need?</option>
+                                <option value="YouTube Thumbnail">YouTube Thumbnail</option>
+                                <option value="Reel Cover">Reel Cover</option>
+                                <option value="Channel Art">Channel Art</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <textarea name="message" rows="5" placeholder="Message/Project Details" required></textarea>
+                            <button type="submit" class="btn" style="width: 100%;">Send Message <i class="fa-solid fa-paper-plane" style="margin-left: 5px;"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="reveal delay-2">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Direct Contact Details</h3>
+                        <p style="color: var(--text-light); margin-bottom: 2rem;">Agar aap form fill nahi karna chahte, toh aap mujhe seedha reach out kar sakte hain:</p>
+                        
+                        <p style="margin-bottom: 0.8rem;"><i class="fa-solid fa-envelope" style="color:var(--accent); margin-right:8px;"></i> <strong>Email:</strong> technicalrajan73@gmail.com</p>
+                        <p style="margin-bottom: 0.8rem;"><i class="fa-solid fa-phone" style="color:var(--accent); margin-right:8px;"></i> <strong>Phone/WhatsApp:</strong> +91-9161088584</p>
+                        <p><i class="fa-solid fa-location-dot" style="color:var(--accent); margin-right:8px;"></i> <strong>Location:</strong> Mau, Uttar Pradesh, India</p>
+
+                        <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 0.5rem;">[Social Media & Work Profiles]</h3>
+                        <div style="display: flex; gap: 10px; margin-bottom: 1.5rem;">
+                           <!-- <a href="#" class="tag" style="text-decoration: none;"><i class="fa-brands fa-behance"></i> Behance</a>-->
+                            <a href="#" class="tag" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                           <!-- <a href="#" class="tag" style="text-decoration: none;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>-->
+                        </div>
+
+                        <div class="workflow-box">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 1rem;"><i class="fa-solid fa-layer-group"></i> Optional Add-ons (Extra Services)</h4>
+                            <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-light); font-size: 0.95rem;">
+                                <li>• Source File (.PSD): +?500 per design</li>
+                                <li>• Extra Fast Delivery (Under 12 Hours): +?300</li>
+                                <li>• YouTube Channel Banner Revamp: ?1500</li>
+                            </ul>
+                            
+                            <h4 style="font-size: 1.2rem; margin-bottom: 1rem;"><i class="fa-solid fa-file-contract"></i> Terms & Workflow</h4>
+                            <p style="color: var(--text-light); margin-bottom: 0.8rem; font-size: 0.95rem;"><strong>Payment Terms:</strong> Kaam shuru karne se pehle 50% advance payment, aur final files deliver karne se pehle baaki ka 50%.</p>
+                            <p style="color: var(--text-light); margin-bottom: 0.8rem; font-size: 0.95rem;"><strong>Process:</strong> Aap mujhe video ka title bhejte hain ? Main draft banata hoon ? Changes ? Final delivery!</p>
+                            <p style="color: var(--text-light); font-size: 0.95rem;"><strong>Payments:</strong> UPI, Bank Transfer, PayPal.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div> <!-- END MAIN PORTFOLIO -->
+
+
+    <!-- ========================================================
+         NEW FEATURE: CHECKOUT / BOOKING PAGE (REDIRECT SIMULATION)
+         ======================================================== -->
+    <div id="checkout-page">
+        <div class="container">
+            <button onclick="showPortfolio()" class="btn btn-outline" style="margin-bottom: 2rem;"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</button>
+            
+            <div class="checkout-wrapper">
+                <div class="checkout-header">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h2>Complete Your Booking</h2>
+                    <p style="color: var(--text-light);">Please provide your details below. I will contact you shortly to start working on your designs!</p>
+                </div>
+
+                <!-- Formspree Connected Checkout Form -->
+                <form action="https://formspree.io/f/mqeokajr" method="POST" class="contact-form" style="padding: 0; border: none; box-shadow: none;">
+                    
+                    <!-- Auto-filled Package Details -->
+                    <div class="selected-pkg-box">
+                        <p>Selected Package</p>
+                        <!-- Notice the readonly attributes -->
+                        <input type="text" name="Selected_Package" id="auto-pkg-name" class="readonly-input" readonly>
+                        <input type="text" name="Package_Price" id="auto-pkg-price" class="readonly-input" style="color: var(--text-dark) !important; font-size: 1.2rem !important;" readonly>
+                    </div>
+
+                    <!-- Client Inputs (Gmail & Phone) -->
+                    <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block;">Your Name</label>
+                    <input type="text" name="Client_Name" placeholder="e.g. Rahul Sharma" required>
+                    
+                    <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block;">Your Gmail / Email</label>
+                    <input type="email" name="Client_Email" placeholder="e.g. rahul@gmail.com" required>
+                    
+                    <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block;">WhatsApp / Phone Number</label>
+                    <input type="tel" name="Client_Phone" placeholder="+91 9876543210" required>
+                    
+                    <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block;">Any Specific Instructions? (Optional)</label>
+                    <textarea name="Project_Details" rows="3" placeholder="Tell me a bit about your channel or requirements..."></textarea>
+                    
+                    <button type="submit" class="btn" style="width: 100%; font-size: 1.2rem; padding: 1.2rem;">Confirm Booking & Send <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i></button>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);"><i class="fa-solid fa-lock"></i> Your information is secure and sent directly to Rajan Sahgal.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <h2>RAJAN SAHGAL</h2>
+            <p style="color: #94a3b8; letter-spacing: 1px; font-weight: 500; font-size: 0.9rem; text-transform: uppercase;">Expert Graphic Designer</p>
+            
+            <div class="footer-links">
+                <a href="#hero" onclick="showPortfolio()">Home</a>
+                <a href="#projects" onclick="showPortfolio()">Work</a>
+                <a href="#about" onclick="showPortfolio()">About Me</a>
+                <a href="#contact" onclick="showPortfolio()">Contact</a>
+            </div>
+
+            <p style="color: #64748b; font-size: 0.9rem;">Turning ideas into scroll-stopping designs since day one.</p>
+            <p style="color: #475569; font-size: 0.85rem; margin-top: 1rem;">© 2026 Rajan Sahgal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- HIDDEN IMAGE PREVIEW MODAL -->
+    <div id="imageModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. SCROLL REVEAL ENGINE
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // 2. DARK MODE TOGGLE (Updated with FontAwesome Icons)
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        if(localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // 3. IMAGE PREVIEW MODAL LOGIC
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+
+        function openModal(element) {
+            const img = element.querySelector('img');
+            if(img) {
+                modal.classList.add("show");
+                modalImg.src = img.src;
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeModal() {
+            modal.classList.remove("show");
+            document.body.style.overflow = "auto";
+        }
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) { closeModal(); }
+        });
+
+        // ==========================================
+        // 4. NEW: CHECKOUT REDIRECT LOGIC
+        // ==========================================
+        function startCheckout(packageName, packagePrice) {
+            // Hide main portfolio and show checkout section
+            document.getElementById('main-portfolio').style.display = 'none';
+            document.getElementById('checkout-page').style.display = 'block';
+            
+            // Scroll to top immediately
+            window.scrollTo(0, 0);
+
+            // Auto-fill the hidden inputs
+            document.getElementById('auto-pkg-name').value = packageName;
+            document.getElementById('auto-pkg-price').value = packagePrice;
+        }
+
+        function showPortfolio() {
+            // Cancel checkout and return to main site
+            document.getElementById('main-portfolio').style.display = 'block';
+            document.getElementById('checkout-page').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
